@@ -1,0 +1,20 @@
+{
+  "137": {
+    "handler": "0x10BA4774cDBF19f3a4ed652005E0078e021bDF3E",
+    "linker": "0xB00BC9e04698A3315B6038225a2E9e42D63C7669",
+    "feeToken": "0x4c28f48448720e9000907BC2611F73022fdcE1fA",
+    "feeForNFT": "1000000000000000",
+    "feeTokenForNFT": "0x4c28f48448720e9000907BC2611F73022fdcE1fA",
+    "uri": "router.io/",
+    "crossChainGas": "1000000"
+  },
+  "250": {
+    "handler": "0x6AfC517BcAC2e0e4BF6bB0F41383732E6359D541",
+    "linker": "0xB00BC9e04698A3315B6038225a2E9e42D63C7669",
+    "feeToken": "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83",
+    "feeForNFT": "1000000000000000",
+    "feeTokenForNFT": "0x21be370d5312f44cb42ce377bc9b8a0cef1a4c83",
+    "uri": "router.io/",
+    "crossChainGas": "1000000"  
+  }
+}
