@@ -120,5 +120,5 @@ abstract contract OnFeeChain is RouterCrossTalk {
     returns (bool, bytes memory)
   {}
 
-  function withdrawFeeTokenForNFT() external virtual {}
+  function withdrawFeeTokenForNFT() external virtual;
 }

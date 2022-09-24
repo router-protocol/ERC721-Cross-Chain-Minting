@@ -9,12 +9,12 @@ import { TASK_UNMAP_CONTRACT } from "./task-names";
 // nchainid = Actual Chain IDs
 task(TASK_UNMAP_CONTRACT, "Unmap Contracts")
   .addParam<string>(
-    "chainid",
+    "routerChainid",
     "Remote ChainID (Router Specs)",
     "",
     types.string
   )
-  .addParam<string>("nchainid", "Remote ChainID", "", types.string)
+  .addParam<string>("actualChainid", "Remote ChainID", "", types.string)
   .setAction(async (taskArgs, hre): Promise<null> => {
     const deployments = require("../deployments/deployments.json");
     const handlerABI = require("../build/contracts/genericHandler.json");
@@ -28,8 +28,8 @@ task(TASK_UNMAP_CONTRACT, "Unmap Contracts")
 
     await handlerContract.UnMapContract([
       deployments[lchainID].ContractAdd,
-      taskArgs.chainid,
-      deployments[taskArgs.nchainid].ContractAdd,
+      taskArgs.routerChainid,
+      deployments[taskArgs.actualChainid].ContractAdd,
     ]);
     console.log("Contract Un-Mapping Done");
     return null;

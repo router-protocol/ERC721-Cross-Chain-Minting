@@ -34,7 +34,7 @@ contract SampleMintingChain is OnMintingChain {
     _setFeeInTokenForNFT(_price);
   }
 
-  // If fees is to be paid on minting chain
+  // If fees is to be paid on minting chain itself
   function mintSameChain(address recipient) external {
     mint(recipient);
   }

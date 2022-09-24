@@ -1,0 +1,20 @@
+{
+  "137": {
+    "handler": "",
+    "linker": "",
+    "feeToken": "",
+    "feeForNFT": "",
+    "feeTokenForNFT": "",
+    "uri": "",
+    "crossChainGas": ""
+  },
+  "250": {
+    "handler": "",
+    "linker": "",
+    "feeToken": "",
+    "feeForNFT": "",
+    "feeTokenForNFT": "",
+    "uri": "",
+    "crossChainGas": ""
+  }
+}

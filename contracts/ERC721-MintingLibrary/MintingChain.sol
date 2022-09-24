@@ -132,5 +132,5 @@ abstract contract OnMintingChain is ERC721, IERC721Receiver, RouterCrossTalk {
     return bytes4(keccak256("onERC721Received(address,address,uint256,bytes)"));
   }
 
-  function withdrawFeeTokenForNFT() external virtual {}
+  function withdrawFeeTokenForNFT() external virtual;
 }

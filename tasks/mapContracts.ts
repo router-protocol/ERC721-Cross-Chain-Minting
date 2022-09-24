@@ -7,12 +7,12 @@ import { TASK_MAP_CONTRACT } from "./task-names";
 // nchainid = Actual Destination Chain IDs
 task(TASK_MAP_CONTRACT, "Map Contracts")
   .addParam<string>(
-    "chainid",
+    "routerChainid",
     "Remote ChainID (Router Specs)",
     "",
     types.string
   )
-  .addParam<string>("nchainid", "Remote ChainID", "", types.string)
+  .addParam<string>("actualChainid", "Remote ChainID", "", types.string)
 
   .setAction(async (taskArgs, hre): Promise<null> => {
     const deployments = require("../deployments/deployments.json");
@@ -27,8 +27,8 @@ task(TASK_MAP_CONTRACT, "Map Contracts")
 
     await handlerContract.MapContract([
       deployments[lchainID].ContractAdd,
-      taskArgs.chainid,
-      deployments[taskArgs.nchainid].ContractAdd,
+      taskArgs.routerChainid,
+      deployments[taskArgs.actualChainid].ContractAdd,
     ]);
     console.log("Contract Mapping Done");
     return null;
