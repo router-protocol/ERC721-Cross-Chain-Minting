@@ -27,7 +27,12 @@ task(TASK_DEPLOY_FEECHAIN_NFT, "Deploys the fee chain nft project")
     const crossChainGas = deployment[chainId].crossChainGas;
 
     const contract = await hre.ethers.getContractFactory("SampleFeeChain");
-    const C11 = await contract.deploy(taskArgs.mintingChainId, handler);
+    const C11 = await contract.deploy(
+      "Router",
+      "ROUTE",
+      taskArgs.mintingChainId,
+      handler
+    );
     await C11.deployed();
     console.log(`C11 deployed to: `, C11.address);
 
