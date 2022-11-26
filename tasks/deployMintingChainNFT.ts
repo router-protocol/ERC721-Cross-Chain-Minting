@@ -10,18 +10,17 @@ import {
   TASK_SET_NFT_FEES_TOKEN,
   TASK_STORE_DEPLOYMENTS,
 } from "./task-names";
-const deployment = require("../deployments/deployments.json");
 
 task(
   TASK_DEPLOY_MINTINGCHAIN_NFT,
   "Deploys the minting chain nft project"
 ).setAction(async (taskArgs, hre): Promise<null> => {
+  const deployment = require("../deployments/deployments.json");
   const network = await hre.ethers.provider.getNetwork();
   const chainId = network.chainId;
   const contractName = "SampleMintingChain";
 
   const handler = deployment[chainId].handler;
-  const uri = deployment[chainId].uri;
   const linker = deployment[chainId].linker;
   const feeToken = deployment[chainId].feeToken;
   const feeTokenForNFT = deployment[chainId].feeTokenForNFT;
@@ -41,6 +40,21 @@ task(
   await hre.run(TASK_SET_LINKER, {
     contractAdd: C11.address,
     linkerAdd: linker,
+  });
+
+  await hre.run(TASK_SET_FEES_TOKEN, {
+    contractAdd: C11.address,
+    feeToken: feeToken,
+  });
+
+  await hre.run(TASK_APPROVE_FEES, {
+    contractAdd: C11.address,
+    feeToken: feeToken,
+  });
+
+  await hre.run(TASK_SET_CROSSCHAIN_GAS, {
+    contractAdd: C11.address,
+    gasLimit: crossChainGas,
   });
 
   await hre.run(TASK_SET_NFT_FEES_TOKEN, {

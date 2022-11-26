@@ -107,7 +107,9 @@ abstract contract OnFeeChain is ERC721, IERC721Receiver, RouterCrossTalk {
     );
 
     // selector to the function to be called on the destination chain
-    bytes4 _selector = bytes4(keccak256("mintCrossChain(address,address)"));
+    bytes4 _selector = bytes4(
+      keccak256("receiveMintCrossChain(address,address)")
+    );
     bytes memory _data = abi.encode(recipient, refundAddress);
     (bool success, bytes32 hash) = routerSend(
       mintingChainID,

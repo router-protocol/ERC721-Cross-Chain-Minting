@@ -10,16 +10,15 @@ import {
   TASK_SET_NFT_FEES_TOKEN,
   TASK_STORE_DEPLOYMENTS,
 } from "./task-names";
-const deployment = require("../deployments/deployments.json");
 
 task(TASK_DEPLOY_FEECHAIN_NFT, "Deploys the fee chain nft project")
-  .addParam("mintingChainId", "minting chain id", "", types.string)
+  .addParam("mintingchainid", "minting chain id", "", types.string)
   .setAction(async (taskArgs, hre): Promise<null> => {
+    const deployment = require("../deployments/deployments.json");
     const network = await hre.ethers.provider.getNetwork();
     const chainId = network.chainId;
     // const contractName = contracts["SampleFeeChain"];
     const handler = deployment[chainId].handler;
-    const uri = deployment[chainId].uri;
     const linker = deployment[chainId].linker;
     const feeToken = deployment[chainId].feeToken;
     const feeTokenForNFT = deployment[chainId].feeTokenForNFT;
@@ -30,7 +29,7 @@ task(TASK_DEPLOY_FEECHAIN_NFT, "Deploys the fee chain nft project")
     const C11 = await contract.deploy(
       "Router",
       "ROUTE",
-      taskArgs.mintingChainId,
+      taskArgs.mintingchainid,
       handler
     );
     await C11.deployed();

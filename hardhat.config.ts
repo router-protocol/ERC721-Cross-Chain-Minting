@@ -64,6 +64,12 @@ const config: HardhatUserConfig = {
       url: process.env.FTM_RPC || "",
       accounts: [mnemonic],
     },
+    avalanche: {
+      url: process.env.AVALANCHE_RPC || "",
+      accounts: [mnemonic],
+      gas: 5000000,
+      gasPrice: 50000000000,
+    },
   },
   gasReporter: {
     enabled: process.env.REPORT_GAS !== undefined,
@@ -77,6 +83,7 @@ const config: HardhatUserConfig = {
       polygonMumbai: process.env.POLYGON_KEY ? process.env.POLYGON_KEY : "",
       bsc: process.env.BSC_KEY ? process.env.BSC_KEY : "",
       opera: process.env.FTMSCAN_KEY ? process.env.FTMSCAN_KEY : "",
+      avalanche: "QAE2JD7XIBCYB6Z6GSKNJIHKZ8XGVYM8AI",
     },
   },
 };

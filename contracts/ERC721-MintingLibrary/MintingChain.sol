@@ -141,7 +141,7 @@ abstract contract OnMintingChain is ERC721, IERC721Receiver, RouterCrossTalk {
       );
       return (success, returnData);
     } else if (
-      _selector == bytes4(keccak256("mintCrossChain(address,address)"))
+      _selector == bytes4(keccak256("receiveMintCrossChain(address,address)"))
     ) {
       (address recipient, address refundAddress) = abi.decode(
         _data,
@@ -176,7 +176,7 @@ abstract contract OnMintingChain is ERC721, IERC721Receiver, RouterCrossTalk {
   /// @param recipient address of recipient of NFT received from the fee chain
   /// @param refundAddress address of wallet to process refund in case NFT
   /// is unavailable (received from fee chain)
-  function mintCrossChain(address recipient, address refundAddress)
+  function receiveMintCrossChain(address recipient, address refundAddress)
     external
     isSelf
   {
