@@ -3,9 +3,9 @@
 pragma solidity ^0.8.0;
 
 import "../FeeChain.sol";
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract SampleFeeChain is OnFeeChain {
+  using SafeERC20 for IERC20;
   address public owner;
 
   constructor(
@@ -132,13 +132,13 @@ contract SampleFeeChain is OnFeeChain {
   function recoverFeeTokens() external onlyOwner {
     address feeToken = this.fetchFeeToken();
     uint256 amount = IERC20(feeToken).balanceOf(address(this));
-    IERC20(feeToken).transfer(owner, amount);
+    IERC20(feeToken).safeTransfer(owner, amount);
   }
 
   /// @notice function to withdraw fee tokens received as payment for NFT
   function withdrawFeeTokenForNFT() external override onlyOwner {
     address feeToken = this.fetchFeeTokenForNFT();
     uint256 amount = IERC20(feeToken).balanceOf(address(this));
-    IERC20(feeToken).transfer(owner, amount);
+    IERC20(feeToken).safeTransfer(owner, amount);
   }
 }

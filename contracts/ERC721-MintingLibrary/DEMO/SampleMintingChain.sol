@@ -3,9 +3,9 @@
 pragma solidity ^0.8.0;
 
 import "../MintingChain.sol";
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract SampleMintingChain is OnMintingChain {
+  using SafeERC20 for IERC20;
   address public owner;
 
   constructor(
@@ -69,6 +69,7 @@ contract SampleMintingChain is OnMintingChain {
   /// @dev This function deducts fees and mints NFTs but reverts in case NFTs are not available
   /// @param recipient address of recipient of NFT
   function mintSameChain(address recipient) external {
+    require(recipient != address(0), "recipient != address(0)");
     mint(recipient);
   }
 
@@ -117,6 +118,6 @@ contract SampleMintingChain is OnMintingChain {
   function withdrawFeeTokenForNFT() external override onlyOwner {
     address feeToken = this.fetchFeeTokenForNFT();
     uint256 amount = IERC20(feeToken).balanceOf(address(this));
-    IERC20(feeToken).transfer(owner, amount);
+    IERC20(feeToken).safeTransfer(owner, amount);
   }
 }
